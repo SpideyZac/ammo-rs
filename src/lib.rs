@@ -69,21 +69,21 @@ mod tests {
 
     #[test]
     fn simple_drawer() {
-        let draw_line = |from: &ffi::btVector3, to: &ffi::btVector3, color: &ffi::btVector3| {
+        let draw_line = |from: &ffi::btVector3, _to: &ffi::btVector3, _color: &ffi::btVector3| {
             println!("Drawing line");
             unsafe {
                 let a = ffi::btVector3_length(from);
                 println!("{}", a)
             }
         };
-        let draw_contact_point = |point_on_b: &ffi::btVector3,
-                                  normal_on_b: &ffi::btVector3,
-                                  distance: f32,
-                                  life_time: i32,
-                                  color: &ffi::btVector3| {};
-        let report_error_warning = |warning_string: *const c_char| {};
-        let draw_3d_text = |location: &ffi::btVector3, text_string: *const c_char| {};
-        let set_debug_mode = |debug_mode: i32| {};
+        let draw_contact_point = |_point_on_b: &ffi::btVector3,
+                                  _normal_on_b: &ffi::btVector3,
+                                  _distance: f32,
+                                  _life_time: i32,
+                                  _color: &ffi::btVector3| {};
+        let report_error_warning = |_warning_string: *const c_char| {};
+        let draw_3d_text = |_location: &ffi::btVector3, _text_string: *const c_char| {};
+        let set_debug_mode = |_debug_mode: i32| {};
         let get_debug_mode = || 0;
 
         let mut drawer = unsafe {

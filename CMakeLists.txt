@@ -17,6 +17,15 @@ set(USE_GLUT OFF CACHE BOOL "" FORCE)
 set(BUILD_MULTITHREADING OFF CACHE BOOL "" FORCE)
 set(BUILD_DEMOS OFF CACHE BOOL "" FORCE)
 
+# Add compiler/linker flags depending on compiler
+if (MSVC)
+    add_compile_options(/O2 /GL)
+    add_link_options(/LTCG)
+else()
+    add_compile_options(-O3 -flto)
+    add_link_options(-flto)
+endif()
+
 # Source directories
 set(BULLET_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ammo.js/bullet/src/)
 set(AMMO_HEADER_FILE ${CMAKE_CURRENT_SOURCE_DIR}/ammo.js/ammo.h)

@@ -21,7 +21,6 @@ fn main() {
             .flag_if_supported("-DBT_NO_SIMD_OPERATOR_OVERLOADS")
             .flag_if_supported("-w")
             .flag_if_supported("-O3")
-            .flag_if_supported("-flto")
             .include("ammo.js/bullet/src")
             .compiler("clang++");
 
@@ -35,7 +34,6 @@ fn main() {
             .flag_if_supported("/w")
             .flag_if_supported("/MD")
             .flag_if_supported("/O2")
-            .flag_if_supported("/GL")
             .include("ammo.js/bullet/src");
 
         build.compile("ammo");
@@ -45,4 +43,5 @@ fn main() {
     println!("cargo:rerun-if-changed=src/ammo.cc");
     println!("cargo:rerun-if-changed=include/ammo.h");
     println!("cargo:rerun-if-changed=ammo.js/bullet/");
+    println!("cargo:rerun-if-changed=CMakeLists.txt");
 }
