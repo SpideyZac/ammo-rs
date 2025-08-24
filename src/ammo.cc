@@ -51,29 +51,29 @@ std::unique_ptr<DebugDrawer> DebugDrawer_new(
                                        reportErrorWarning, draw3dText,
                                        setDebugMode, getDebugMode);
 }
-void DebugDrawer_drawLine(DebugDrawer *drawer, const btVector3 &from,
+void DebugDrawer_drawLine(DebugDrawer &drawer, const btVector3 &from,
                           const btVector3 &to, const btVector3 &color) {
-  drawer->drawLine(from, to, color);
+  drawer.drawLine(from, to, color);
 }
-void DebugDrawer_drawContactPoint(DebugDrawer *drawer,
+void DebugDrawer_drawContactPoint(DebugDrawer &drawer,
                                   const btVector3 &pointOnB,
                                   const btVector3 &normalOnB, float distance,
                                   std::int32_t lifeTime,
                                   const btVector3 &color) {
-  drawer->drawContactPoint(pointOnB, normalOnB, distance, lifeTime, color);
+  drawer.drawContactPoint(pointOnB, normalOnB, distance, lifeTime, color);
 }
-void DebugDrawer_reportErrorWarning(DebugDrawer *drawer,
+void DebugDrawer_reportErrorWarning(DebugDrawer &drawer,
                                     const char *warningString) {
-  drawer->reportErrorWarning(warningString);
+  drawer.reportErrorWarning(warningString);
 }
-void DebugDrawer_draw3dText(DebugDrawer *drawer, const btVector3 &location,
+void DebugDrawer_draw3dText(DebugDrawer &drawer, const btVector3 &location,
                             const char *textString) {
-  drawer->draw3dText(location, textString);
+  drawer.draw3dText(location, textString);
 }
-void DebugDrawer_setDebugMode(DebugDrawer *drawer, std::int32_t debugMode) {
-  drawer->setDebugMode(debugMode);
+void DebugDrawer_setDebugMode(DebugDrawer &drawer, std::int32_t debugMode) {
+  drawer.setDebugMode(debugMode);
 }
-std::int32_t DebugDrawer_getDebugMode(DebugDrawer *drawer) {
-  return drawer->getDebugMode();
+std::int32_t DebugDrawer_getDebugMode(DebugDrawer &drawer) {
+  return drawer.getDebugMode();
 }
 } // namespace ammo

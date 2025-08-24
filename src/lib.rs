@@ -18,13 +18,13 @@ mod ffi {
             getDebugMode: unsafe fn() -> i32,
         ) -> UniquePtr<DebugDrawer>;
         unsafe fn DebugDrawer_drawLine(
-            drawer: *mut DebugDrawer,
+            drawer: Pin<&mut DebugDrawer>,
             from: &btVector3,
             to: &btVector3,
             color: &btVector3,
         );
         unsafe fn DebugDrawer_drawContactPoint(
-            drawer: *mut DebugDrawer,
+            drawer: Pin<&mut DebugDrawer>,
             pointOnB: &btVector3,
             normalOnB: &btVector3,
             distance: f32,
@@ -32,16 +32,16 @@ mod ffi {
             color: &btVector3,
         );
         unsafe fn DebugDrawer_reportErrorWarning(
-            drawer: *mut DebugDrawer,
+            drawer: Pin<&mut DebugDrawer>,
             warningString: *const c_char,
         );
         unsafe fn DebugDrawer_draw3dText(
-            drawer: *mut DebugDrawer,
+            drawer: Pin<&mut DebugDrawer>,
             location: &btVector3,
             textString: *const c_char,
         );
-        unsafe fn DebugDrawer_setDebugMode(drawer: *mut DebugDrawer, debugMode: i32);
-        unsafe fn DebugDrawer_getDebugMode(drawer: *mut DebugDrawer) -> i32;
+        unsafe fn DebugDrawer_setDebugMode(drawer: Pin<&mut DebugDrawer>, debugMode: i32);
+        unsafe fn DebugDrawer_getDebugMode(drawer: Pin<&mut DebugDrawer>) -> i32;
     }
 }
 

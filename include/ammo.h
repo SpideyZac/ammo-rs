@@ -65,17 +65,17 @@ std::unique_ptr<DebugDrawer> DebugDrawer_new(
     rust::Fn<void(const btVector3 &, const char *)> draw3dText,
     rust::Fn<void(std::int32_t)> setDebugMode,
     rust::Fn<std::int32_t()> getDebugMode);
-void DebugDrawer_drawLine(DebugDrawer *drawer, const btVector3 &from,
+void DebugDrawer_drawLine(DebugDrawer &drawer, const btVector3 &from,
                           const btVector3 &to, const btVector3 &color);
-void DebugDrawer_drawContactPoint(DebugDrawer *drawer,
+void DebugDrawer_drawContactPoint(DebugDrawer &drawer,
                                   const btVector3 &pointOnB,
                                   const btVector3 &normalOnB, float distance,
                                   std::int32_t lifeTime,
                                   const btVector3 &color);
-void DebugDrawer_reportErrorWarning(DebugDrawer *drawer,
+void DebugDrawer_reportErrorWarning(DebugDrawer &drawer,
                                     const char *warningString);
-void DebugDrawer_draw3dText(DebugDrawer *drawer, const btVector3 &location,
+void DebugDrawer_draw3dText(DebugDrawer &drawer, const btVector3 &location,
                             const char *textString);
-void DebugDrawer_setDebugMode(DebugDrawer *drawer, std::int32_t debugMode);
-std::int32_t DebugDrawer_getDebugMode(DebugDrawer *drawer);
+void DebugDrawer_setDebugMode(DebugDrawer &drawer, std::int32_t debugMode);
+std::int32_t DebugDrawer_getDebugMode(DebugDrawer &drawer);
 } // namespace ammo
