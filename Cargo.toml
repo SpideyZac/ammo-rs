@@ -7,4 +7,10 @@ edition = "2024"
 cxx = "1.0"
 
 [build-dependencies]
+cmake = "0.1.54"
 cxx-build = "1.0"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"

@@ -78,4 +78,24 @@ void DebugDrawer_draw3dText(DebugDrawer &drawer, const btVector3 &location,
                             const char *textString);
 void DebugDrawer_setDebugMode(DebugDrawer &drawer, std::int32_t debugMode);
 std::int32_t DebugDrawer_getDebugMode(DebugDrawer &drawer);
+
+std::unique_ptr<btVector3> btVector3_new();
+std::unique_ptr<btVector3> btVector3_new1(float x, float y, float z);
+float btVector3_length(const btVector3 &vec);
+float btVector3_x(const btVector3 &vec);
+float btVector3_y(const btVector3 &vec);
+float btVector3_z(const btVector3 &vec);
+void btVector3_setX(btVector3 &vec, float x);
+void btVector3_setY(btVector3 &vec, float y);
+void btVector3_setZ(btVector3 &vec, float z);
+void btVector3_setValue(btVector3 &vec, float x, float y, float z);
+void btVector3_normalize(btVector3 &vec);
+std::unique_ptr<btVector3>
+btVector3_rotate(const btVector3 &vec, const btVector3 &wAxis, float angle);
+float btVector3_dot(const btVector3 &vec, const btVector3 &v);
+std::unique_ptr<btVector3> btVector3_mul(const btVector3 &vec, float s);
+std::unique_ptr<btVector3> btVector3_add(const btVector3 &vec,
+                                         const btVector3 &v);
+std::unique_ptr<btVector3> btVector3_sub(const btVector3 &vec,
+                                         const btVector3 &v);
 } // namespace ammo

@@ -76,4 +76,40 @@ void DebugDrawer_setDebugMode(DebugDrawer &drawer, std::int32_t debugMode) {
 std::int32_t DebugDrawer_getDebugMode(DebugDrawer &drawer) {
   return drawer.getDebugMode();
 }
+
+std::unique_ptr<btVector3> btVector3_new() {
+  return std::make_unique<btVector3>();
+}
+std::unique_ptr<btVector3> btVector3_new1(float x, float y, float z) {
+  return std::make_unique<btVector3>(x, y, z);
+}
+float btVector3_length(const btVector3 &vec) { return vec.length(); }
+float btVector3_x(const btVector3 &vec) { return vec.x(); }
+float btVector3_y(const btVector3 &vec) { return vec.y(); }
+float btVector3_z(const btVector3 &vec) { return vec.z(); }
+void btVector3_setX(btVector3 &vec, float x) { vec.setX(x); }
+void btVector3_setY(btVector3 &vec, float y) { vec.setY(y); }
+void btVector3_setZ(btVector3 &vec, float z) { vec.setZ(z); }
+void btVector3_setValue(btVector3 &vec, float x, float y, float z) {
+  vec.setValue(x, y, z);
+}
+void btVector3_normalize(btVector3 &vec) { vec.normalize(); }
+std::unique_ptr<btVector3>
+btVector3_rotate(const btVector3 &vec, const btVector3 &wAxis, float angle) {
+  return std::make_unique<btVector3>(vec.rotate(wAxis, angle));
+}
+float btVector3_dot(const btVector3 &vec, const btVector3 &v) {
+  return vec.dot(v);
+}
+std::unique_ptr<btVector3> btVector3_mul(const btVector3 &vec, float s) {
+  return std::make_unique<btVector3>(vec * s);
+}
+std::unique_ptr<btVector3> btVector3_add(const btVector3 &vec,
+                                         const btVector3 &v) {
+  return std::make_unique<btVector3>(vec + v);
+}
+std::unique_ptr<btVector3> btVector3_sub(const btVector3 &vec,
+                                         const btVector3 &v) {
+  return std::make_unique<btVector3>(vec - v);
+}
 } // namespace ammo
