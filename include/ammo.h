@@ -18,6 +18,8 @@
 #include "rust/cxx.h"
 
 namespace ammo {
+using ::btIDebugDraw;
+using ::btMatrix3x3;
 using ::btQuadWord;
 using ::btQuaternion;
 using ::btVector3;
@@ -169,4 +171,8 @@ void btQuaternion_setX(btQuaternion &quat, float x);
 void btQuaternion_setY(btQuaternion &quat, float y);
 void btQuaternion_setZ(btQuaternion &quat, float z);
 void btQuaternion_setW(btQuaternion &quat, float w);
+
+void btMatrix3x3_setEulerZYX(btMatrix3x3 &mat, float ex, float ey, float ez);
+void btMatrix3x3_getRotation(const btMatrix3x3 &mat, btQuaternion &quat);
+std::unique_ptr<btVector3> btMatrix3x3_getRow(const btMatrix3x3 &mat, int y);
 } // namespace ammo

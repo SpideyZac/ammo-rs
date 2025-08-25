@@ -231,4 +231,14 @@ void btQuaternion_setX(btQuaternion &quat, float x) { quat.setX(x); }
 void btQuaternion_setY(btQuaternion &quat, float y) { quat.setY(y); }
 void btQuaternion_setZ(btQuaternion &quat, float z) { quat.setZ(z); }
 void btQuaternion_setW(btQuaternion &quat, float w) { quat.setW(w); }
+
+void btMatrix3x3_setEulerZYX(btMatrix3x3 &mat, float ex, float ey, float ez) {
+  mat.setEulerZYX(ex, ey, ez);
+}
+void btMatrix3x3_getRotation(const btMatrix3x3 &mat, btQuaternion &quat) {
+  mat.getRotation(quat);
+}
+std::unique_ptr<btVector3> btMatrix3x3_getRow(const btMatrix3x3 &mat, int y) {
+  return std::make_unique<btVector3>(mat.getRow(y));
+}
 } // namespace ammo

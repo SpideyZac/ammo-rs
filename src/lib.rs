@@ -11,6 +11,7 @@ mod ffi {
         type btVector4;
         type btQuadWord;
         type btQuaternion;
+        type btMatrix3x3;
 
         unsafe fn DebugDrawer_new(
             drawLine: unsafe fn(&btVector3, &btVector3, &btVector3),
@@ -145,6 +146,10 @@ mod ffi {
         unsafe fn btQuaternion_setY(quat: Pin<&mut btQuaternion>, y: f32);
         unsafe fn btQuaternion_setZ(quat: Pin<&mut btQuaternion>, z: f32);
         unsafe fn btQuaternion_setW(quat: Pin<&mut btQuaternion>, w: f32);
+
+        unsafe fn btMatrix3x3_setEulerZYX(mat: Pin<&mut btMatrix3x3>, ex: f32, ey: f32, ez: f32);
+        unsafe fn btMatrix3x3_getRotation(mat: &btMatrix3x3, quat: Pin<&mut btQuaternion>);
+        unsafe fn btMatrix3x3_getRow(mat: &btMatrix3x3, y: i32) -> UniquePtr<btVector3>;
     }
 }
 
