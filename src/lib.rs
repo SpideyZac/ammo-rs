@@ -13,6 +13,7 @@ mod ffi {
         type btQuaternion;
         type btMatrix3x3;
         type btTransform;
+        type MotionState;
 
         unsafe fn DebugDrawer_new(
             drawLine: unsafe fn(&btVector3, &btVector3, &btVector3),
@@ -163,6 +164,19 @@ mod ffi {
         unsafe fn setFromOpenGLMatrix(trans: Pin<&mut btTransform>, m: *const f32);
         unsafe fn btTransform_inverse(trans: &btTransform) -> UniquePtr<btTransform>;
         unsafe fn btTransform_mul(trans: &btTransform, t: &btTransform) -> UniquePtr<btTransform>;
+
+        unsafe fn MotionState_new(
+            getWorldTransform: fn(Pin<&mut btTransform>),
+            setWorldTransform: fn(&btTransform),
+        ) -> UniquePtr<MotionState>;
+        unsafe fn MotionState_getWorldTransform(
+            motionState: &MotionState,
+            worldTrans: Pin<&mut btTransform>,
+        );
+        unsafe fn MotionState_setWorldTransform(
+            motionState: Pin<&mut MotionState>,
+            worldTrans: &btTransform,
+        );
     }
 }
 

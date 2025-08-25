@@ -276,4 +276,30 @@ std::unique_ptr<btTransform> btTransform_mul(const btTransform &trans,
                                              const btTransform &t) {
   return std::make_unique<btTransform>(trans * t);
 }
+
+MotionState::MotionState(rust::Fn<void(btTransform &)> getWorldTransform,
+                         rust::Fn<void(const btTransform &)> setWorldTransform)
+    : m_getWorldTransform(std::move(getWorldTransform)),
+      m_setWorldTransform(std::move(setWorldTransform)) {}
+
+void MotionState::getWorldTransform(btTransform &worldTrans) const {
+  m_getWorldTransform(worldTrans);
+}
+void MotionState::setWorldTransform(const btTransform &worldTrans) {
+  m_setWorldTransform(worldTrans);
+}
+
+std::unique_ptr<MotionState>
+MotionState_new(rust::Fn<void(btTransform &)> getWorldTransform,
+                rust::Fn<void(const btTransform &)> setWorldTransform) {
+  return std::make_unique<MotionState>(getWorldTransform, setWorldTransform);
+}
+void MotionState_getWorldTransform(const MotionState &motionState,
+                                   btTransform &worldTrans) {
+  motionState.getWorldTransform(worldTrans);
+};
+void MotionState_setWorldTransform(MotionState &motionState,
+                                   const btTransform &worldTrans) {
+  motionState.setWorldTransform(worldTrans);
+};
 } // namespace ammo

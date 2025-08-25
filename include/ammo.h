@@ -20,6 +20,7 @@
 namespace ammo {
 using ::btIDebugDraw;
 using ::btMatrix3x3;
+using ::btMotionState;
 using ::btQuadWord;
 using ::btQuaternion;
 using ::btTransform;
@@ -190,4 +191,25 @@ void setFromOpenGLMatrix(btTransform &trans, const float *m);
 std::unique_ptr<btTransform> btTransform_inverse(const btTransform &trans);
 std::unique_ptr<btTransform> btTransform_mul(const btTransform &trans,
                                              const btTransform &t);
+
+class MotionState : public btMotionState {
+private:
+  rust::Fn<void(btTransform &)> m_getWorldTransform;
+  rust::Fn<void(const btTransform &)> m_setWorldTransform;
+
+public:
+  MotionState(rust::Fn<void(btTransform &)> getWorldTransform,
+              rust::Fn<void(const btTransform &)> setWorldTransform);
+
+  void getWorldTransform(btTransform &worldTrans) const override;
+  void setWorldTransform(const btTransform &worldTrans) override;
+};
+
+std::unique_ptr<MotionState>
+MotionState_new(rust::Fn<void(btTransform &)> getWorldTransform,
+                rust::Fn<void(const btTransform &)> setWorldTransform);
+void MotionState_getWorldTransform(const MotionState &motionState,
+                                   btTransform &worldTrans);
+void MotionState_setWorldTransform(MotionState &motionState,
+                                   const btTransform &worldTrans);
 } // namespace ammo
