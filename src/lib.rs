@@ -10,6 +10,7 @@ mod ffi {
         type btVector3;
         type btVector4;
         type btQuadWord;
+        type btQuaternion;
 
         unsafe fn DebugDrawer_new(
             drawLine: unsafe fn(&btVector3, &btVector3, &btVector3),
@@ -96,6 +97,54 @@ mod ffi {
         unsafe fn btQuadWord_setY(v: Pin<&mut btQuadWord>, y: f32);
         unsafe fn btQuadWord_setZ(v: Pin<&mut btQuadWord>, z: f32);
         unsafe fn btQuadWord_setW(v: Pin<&mut btQuadWord>, w: f32);
+
+        unsafe fn btQuaternion_new(x: f32, y: f32, z: f32, w: f32) -> UniquePtr<btQuaternion>;
+        unsafe fn btQuaternion_setValue(
+            quat: Pin<&mut btQuaternion>,
+            x: f32,
+            y: f32,
+            z: f32,
+            w: f32,
+        );
+        unsafe fn btQuaternion_setEulerZYX(quat: Pin<&mut btQuaternion>, z: f32, y: f32, x: f32);
+        unsafe fn btQuaternion_setRotation(
+            quat: Pin<&mut btQuaternion>,
+            axis: &btVector3,
+            angle: f32,
+        );
+        unsafe fn btQuaternion_normalize(quat: Pin<&mut btQuaternion>);
+        unsafe fn btQuaternion_length2(quat: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_length(quat: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_dot(quat: &btQuaternion, other: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_normalized(quat: &btQuaternion) -> UniquePtr<btQuaternion>;
+        unsafe fn btQuaternion_getAxis(quat: &btQuaternion) -> UniquePtr<btVector3>;
+        unsafe fn btQuaternion_inverse(quat: &btQuaternion) -> UniquePtr<btQuaternion>;
+        unsafe fn btQuaternion_getAngle(quat: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_getAngleShortestPath(quat: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_angle(quat: &btQuaternion, other: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_angleShortestPath(quat: &btQuaternion, other: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_add(
+            quat: &btQuaternion,
+            other: &btQuaternion,
+        ) -> UniquePtr<btQuaternion>;
+        unsafe fn btQuaternion_sub(
+            quat: &btQuaternion,
+            other: &btQuaternion,
+        ) -> UniquePtr<btQuaternion>;
+        unsafe fn btQuaternion_mul(quat: &btQuaternion, s: f32) -> UniquePtr<btQuaternion>;
+        unsafe fn btQuaternion_mulq(
+            quat: &btQuaternion,
+            other: &btQuaternion,
+        ) -> UniquePtr<btQuaternion>;
+        unsafe fn btQuaternion_div(quat: &btQuaternion, s: f32) -> UniquePtr<btQuaternion>;
+        unsafe fn btQuaternion_x(quat: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_y(quat: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_z(quat: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_w(quat: &btQuaternion) -> f32;
+        unsafe fn btQuaternion_setX(quat: Pin<&mut btQuaternion>, x: f32);
+        unsafe fn btQuaternion_setY(quat: Pin<&mut btQuaternion>, y: f32);
+        unsafe fn btQuaternion_setZ(quat: Pin<&mut btQuaternion>, z: f32);
+        unsafe fn btQuaternion_setW(quat: Pin<&mut btQuaternion>, w: f32);
     }
 }
 

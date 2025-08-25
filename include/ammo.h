@@ -19,6 +19,7 @@
 
 namespace ammo {
 using ::btQuadWord;
+using ::btQuaternion;
 using ::btVector3;
 using ::btVector4;
 
@@ -130,4 +131,42 @@ void btQuadWord_setX(btQuadWord &vec, float x);
 void btQuadWord_setY(btQuadWord &vec, float y);
 void btQuadWord_setZ(btQuadWord &vec, float z);
 void btQuadWord_setW(btQuadWord &vec, float w);
+
+std::unique_ptr<btQuaternion> btQuaternion_new(float x, float y, float z,
+                                               float w);
+void btQuaternion_setValue(btQuaternion &quat, float x, float y, float z,
+                           float w);
+void btQuaternion_setEulerZYX(btQuaternion &quat, float z, float y, float x);
+void btQuaternion_setRotation(btQuaternion &quat, const btVector3 &axis,
+                              float angle);
+void btQuaternion_normalize(btQuaternion &quat);
+float btQuaternion_length2(const btQuaternion &quat);
+float btQuaternion_length(const btQuaternion &quat);
+float btQuaternion_dot(const btQuaternion &quat, const btQuaternion &q);
+std::unique_ptr<btQuaternion> btQuaternion_normalized(const btQuaternion &quat);
+std::unique_ptr<btVector3> btQuaternion_getAxis(const btQuaternion &quat);
+std::unique_ptr<btQuaternion> btQuaternion_inverse(const btQuaternion &quat);
+float btQuaternion_getAngle(const btQuaternion &quat);
+float btQuaternion_getAngleShortestPath(const btQuaternion &quat);
+float btQuaternion_angle(const btQuaternion &quat, const btQuaternion &q);
+float btQuaternion_angleShortestPath(const btQuaternion &quat,
+                                     const btQuaternion &q);
+std::unique_ptr<btQuaternion> btQuaternion_add(const btQuaternion &quat,
+                                               const btQuaternion &q);
+std::unique_ptr<btQuaternion> btQuaternion_sub(const btQuaternion &quat,
+                                               const btQuaternion &q);
+std::unique_ptr<btQuaternion> btQuaternion_mul(const btQuaternion &quat,
+                                               float s);
+std::unique_ptr<btQuaternion> btQuaternion_mulq(const btQuaternion &quat,
+                                                const btQuaternion &q);
+std::unique_ptr<btQuaternion> btQuaternion_div(const btQuaternion &quat,
+                                               float s);
+float btQuaternion_x(const btQuaternion &quat);
+float btQuaternion_y(const btQuaternion &quat);
+float btQuaternion_z(const btQuaternion &quat);
+float btQuaternion_w(const btQuaternion &quat);
+void btQuaternion_setX(btQuaternion &quat, float x);
+void btQuaternion_setY(btQuaternion &quat, float y);
+void btQuaternion_setZ(btQuaternion &quat, float z);
+void btQuaternion_setW(btQuaternion &quat, float w);
 } // namespace ammo

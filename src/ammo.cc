@@ -158,4 +158,77 @@ void btQuadWord_setX(btQuadWord &vec, float x) { vec.setX(x); }
 void btQuadWord_setY(btQuadWord &vec, float y) { vec.setY(y); }
 void btQuadWord_setZ(btQuadWord &vec, float z) { vec.setZ(z); }
 void btQuadWord_setW(btQuadWord &vec, float w) { vec.setW(w); }
+
+std::unique_ptr<btQuaternion> btQuaternion_new(float x, float y, float z,
+                                               float w) {
+  return std::make_unique<btQuaternion>(x, y, z, w);
+}
+void btQuaternion_setValue(btQuaternion &quat, float x, float y, float z,
+                           float w) {
+  quat.setValue(x, y, z, w);
+}
+void btQuaternion_setEulerZYX(btQuaternion &quat, float z, float y, float x) {
+  quat.setEulerZYX(z, y, x);
+}
+void btQuaternion_setRotation(btQuaternion &quat, const btVector3 &axis,
+                              float angle) {
+  quat.setRotation(axis, angle);
+}
+void btQuaternion_normalize(btQuaternion &quat) { quat.normalize(); }
+float btQuaternion_length2(const btQuaternion &quat) { return quat.length2(); }
+float btQuaternion_length(const btQuaternion &quat) { return quat.length(); }
+float btQuaternion_dot(const btQuaternion &quat, const btQuaternion &q) {
+  return quat.dot(q);
+}
+std::unique_ptr<btQuaternion>
+btQuaternion_normalized(const btQuaternion &quat) {
+  return std::make_unique<btQuaternion>(quat.normalized());
+}
+std::unique_ptr<btVector3> btQuaternion_getAxis(const btQuaternion &quat) {
+  return std::make_unique<btVector3>(quat.getAxis());
+}
+std::unique_ptr<btQuaternion> btQuaternion_inverse(const btQuaternion &quat) {
+  return std::make_unique<btQuaternion>(quat.inverse());
+}
+float btQuaternion_getAngle(const btQuaternion &quat) {
+  return quat.getAngle();
+}
+float btQuaternion_getAngleShortestPath(const btQuaternion &quat) {
+  return quat.getAngleShortestPath();
+}
+float btQuaternion_angle(const btQuaternion &quat, const btQuaternion &q) {
+  return quat.angle(q);
+}
+float btQuaternion_angleShortestPath(const btQuaternion &quat,
+                                     const btQuaternion &q) {
+  return quat.angleShortestPath(q);
+}
+std::unique_ptr<btQuaternion> btQuaternion_add(const btQuaternion &quat,
+                                               const btQuaternion &q) {
+  return std::make_unique<btQuaternion>(quat + q);
+}
+std::unique_ptr<btQuaternion> btQuaternion_sub(const btQuaternion &quat,
+                                               const btQuaternion &q) {
+  return std::make_unique<btQuaternion>(quat - q);
+}
+std::unique_ptr<btQuaternion> btQuaternion_mul(const btQuaternion &quat,
+                                               float s) {
+  return std::make_unique<btQuaternion>(quat * s);
+}
+std::unique_ptr<btQuaternion> btQuaternion_mulq(const btQuaternion &quat,
+                                                const btQuaternion &q) {
+  return std::make_unique<btQuaternion>(quat * q);
+}
+std::unique_ptr<btQuaternion> btQuaternion_div(const btQuaternion &quat,
+                                               float s) {
+  return std::make_unique<btQuaternion>(quat / s);
+}
+float btQuaternion_x(const btQuaternion &quat) { return quat.x(); }
+float btQuaternion_y(const btQuaternion &quat) { return quat.y(); }
+float btQuaternion_z(const btQuaternion &quat) { return quat.z(); }
+float btQuaternion_w(const btQuaternion &quat) { return quat.w(); }
+void btQuaternion_setX(btQuaternion &quat, float x) { quat.setX(x); }
+void btQuaternion_setY(btQuaternion &quat, float y) { quat.setY(y); }
+void btQuaternion_setZ(btQuaternion &quat, float z) { quat.setZ(z); }
+void btQuaternion_setW(btQuaternion &quat, float w) { quat.setW(w); }
 } // namespace ammo
