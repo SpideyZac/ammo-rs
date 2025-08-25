@@ -302,4 +302,25 @@ void MotionState_setWorldTransform(MotionState &motionState,
                                    const btTransform &worldTrans) {
   motionState.setWorldTransform(worldTrans);
 };
+
+std::unique_ptr<btDefaultMotionState> btDefaultMotionState_new() {
+  return std::make_unique<btDefaultMotionState>();
+}
+std::unique_ptr<btDefaultMotionState>
+btDefaultMotionState_new1(const btTransform &startTrans) {
+  return std::make_unique<btDefaultMotionState>(startTrans);
+}
+std::unique_ptr<btDefaultMotionState>
+btDefaultMotionState_new2(const btTransform &startTrans,
+                          const btTransform &centerOfMassOffset) {
+  return std::make_unique<btDefaultMotionState>(startTrans, centerOfMassOffset);
+}
+std::unique_ptr<btTransform>
+btDefaultMotionState_getMGraphicsWorldTrans(const btDefaultMotionState &state) {
+  return std::make_unique<btTransform>(state.m_graphicsWorldTrans);
+}
+void btDefaultMotionState_setMGraphicsWorldTrans(btDefaultMotionState &state,
+                                                 const btTransform &trans) {
+  state.m_graphicsWorldTrans = trans;
+}
 } // namespace ammo

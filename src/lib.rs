@@ -16,6 +16,7 @@ mod ffi {
         type btTransform;
         type btMotionState;
         type MotionState;
+        type btDefaultMotionState;
 
         unsafe fn DebugDrawer_new(
             drawLine: unsafe fn(&btVector3, &btVector3, &btVector3),
@@ -178,6 +179,22 @@ mod ffi {
         unsafe fn MotionState_setWorldTransform(
             motionState: Pin<&mut MotionState>,
             worldTrans: &btTransform,
+        );
+
+        unsafe fn btDefaultMotionState_new() -> UniquePtr<btDefaultMotionState>;
+        unsafe fn btDefaultMotionState_new1(
+            startTrans: &btTransform,
+        ) -> UniquePtr<btDefaultMotionState>;
+        unsafe fn btDefaultMotionState_new2(
+            startTrans: &btTransform,
+            centerOfMassOffset: &btTransform,
+        ) -> UniquePtr<btDefaultMotionState>;
+        unsafe fn btDefaultMotionState_getMGraphicsWorldTrans(
+            state: &btDefaultMotionState,
+        ) -> UniquePtr<btTransform>;
+        unsafe fn btDefaultMotionState_setMGraphicsWorldTrans(
+            state: Pin<&mut btDefaultMotionState>,
+            trans: &btTransform,
         );
     }
 }

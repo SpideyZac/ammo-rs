@@ -18,6 +18,7 @@
 #include "rust/cxx.h"
 
 namespace ammo {
+using ::btDefaultMotionState;
 using ::btIDebugDraw;
 using ::btMatrix3x3;
 using ::btMotionState;
@@ -212,4 +213,15 @@ void MotionState_getWorldTransform(const MotionState &motionState,
                                    btTransform &worldTrans);
 void MotionState_setWorldTransform(MotionState &motionState,
                                    const btTransform &worldTrans);
+
+std::unique_ptr<btDefaultMotionState> btDefaultMotionState_new();
+std::unique_ptr<btDefaultMotionState>
+btDefaultMotionState_new1(const btTransform &startTrans);
+std::unique_ptr<btDefaultMotionState>
+btDefaultMotionState_new2(const btTransform &startTrans,
+                          const btTransform &centerOfMassOffset);
+std::unique_ptr<btTransform>
+btDefaultMotionState_getMGraphicsWorldTrans(const btDefaultMotionState &state);
+void btDefaultMotionState_setMGraphicsWorldTrans(btDefaultMotionState &state,
+                                                 const btTransform &trans);
 } // namespace ammo
