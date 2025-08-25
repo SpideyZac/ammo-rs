@@ -6,6 +6,7 @@ mod ffi {
     unsafe extern "C++" {
         include!("ammo-rs/include/ammo.h");
 
+        type btIDebugDraw;
         type DebugDrawer;
         type btVector3;
         type btVector4;
@@ -13,6 +14,7 @@ mod ffi {
         type btQuaternion;
         type btMatrix3x3;
         type btTransform;
+        type btMotionState;
         type MotionState;
 
         unsafe fn DebugDrawer_new(
