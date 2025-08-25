@@ -12,6 +12,7 @@ mod ffi {
         type btQuadWord;
         type btQuaternion;
         type btMatrix3x3;
+        type btTransform;
 
         unsafe fn DebugDrawer_new(
             drawLine: unsafe fn(&btVector3, &btVector3, &btVector3),
@@ -150,6 +151,18 @@ mod ffi {
         unsafe fn btMatrix3x3_setEulerZYX(mat: Pin<&mut btMatrix3x3>, ex: f32, ey: f32, ez: f32);
         unsafe fn btMatrix3x3_getRotation(mat: &btMatrix3x3, quat: Pin<&mut btQuaternion>);
         unsafe fn btMatrix3x3_getRow(mat: &btMatrix3x3, y: i32) -> UniquePtr<btVector3>;
+
+        unsafe fn btTransform_new() -> UniquePtr<btTransform>;
+        unsafe fn btTransform_new1(q: &btQuaternion, v: &btVector3) -> UniquePtr<btTransform>;
+        unsafe fn btTransform_setIdentity(trans: Pin<&mut btTransform>);
+        unsafe fn btTransform_setOrigin(trans: Pin<&mut btTransform>, origin: &btVector3);
+        unsafe fn btTransform_setRotation(trans: Pin<&mut btTransform>, rotation: &btQuaternion);
+        unsafe fn btTransform_getOrigin(trans: &btTransform) -> UniquePtr<btVector3>;
+        unsafe fn btTransform_getRotation(trans: &btTransform) -> UniquePtr<btQuaternion>;
+        unsafe fn btTransform_getBasis(trans: &btTransform) -> UniquePtr<btMatrix3x3>;
+        unsafe fn setFromOpenGLMatrix(trans: Pin<&mut btTransform>, m: *const f32);
+        unsafe fn btTransform_inverse(trans: &btTransform) -> UniquePtr<btTransform>;
+        unsafe fn btTransform_mul(trans: &btTransform, t: &btTransform) -> UniquePtr<btTransform>;
     }
 }
 

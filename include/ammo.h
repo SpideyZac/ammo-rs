@@ -22,6 +22,7 @@ using ::btIDebugDraw;
 using ::btMatrix3x3;
 using ::btQuadWord;
 using ::btQuaternion;
+using ::btTransform;
 using ::btVector3;
 using ::btVector4;
 
@@ -175,4 +176,18 @@ void btQuaternion_setW(btQuaternion &quat, float w);
 void btMatrix3x3_setEulerZYX(btMatrix3x3 &mat, float ex, float ey, float ez);
 void btMatrix3x3_getRotation(const btMatrix3x3 &mat, btQuaternion &quat);
 std::unique_ptr<btVector3> btMatrix3x3_getRow(const btMatrix3x3 &mat, int y);
+
+std::unique_ptr<btTransform> btTransform_new();
+std::unique_ptr<btTransform> btTransform_new1(const btQuaternion &q,
+                                              const btVector3 &v);
+void btTransform_setIdentity(btTransform &trans);
+void btTransform_setOrigin(btTransform &trans, const btVector3 &origin);
+void btTransform_setRotation(btTransform &trans, const btQuaternion &rotation);
+std::unique_ptr<btVector3> btTransform_getOrigin(const btTransform &trans);
+std::unique_ptr<btQuaternion> btTransform_getRotation(const btTransform &trans);
+std::unique_ptr<btMatrix3x3> btTransform_getBasis(const btTransform &trans);
+void setFromOpenGLMatrix(btTransform &trans, const float *m);
+std::unique_ptr<btTransform> btTransform_inverse(const btTransform &trans);
+std::unique_ptr<btTransform> btTransform_mul(const btTransform &trans,
+                                             const btTransform &t);
 } // namespace ammo

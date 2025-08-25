@@ -241,4 +241,39 @@ void btMatrix3x3_getRotation(const btMatrix3x3 &mat, btQuaternion &quat) {
 std::unique_ptr<btVector3> btMatrix3x3_getRow(const btMatrix3x3 &mat, int y) {
   return std::make_unique<btVector3>(mat.getRow(y));
 }
+
+std::unique_ptr<btTransform> btTransform_new() {
+  return std::make_unique<btTransform>();
+}
+std::unique_ptr<btTransform> btTransform_new1(const btQuaternion &q,
+                                              const btVector3 &v) {
+  return std::make_unique<btTransform>(q, v);
+}
+void btTransform_setIdentity(btTransform &trans) { trans.setIdentity(); }
+void btTransform_setOrigin(btTransform &trans, const btVector3 &origin) {
+  trans.setOrigin(origin);
+}
+void btTransform_setRotation(btTransform &trans, const btQuaternion &rotation) {
+  trans.setRotation(rotation);
+}
+std::unique_ptr<btVector3> btTransform_getOrigin(const btTransform &trans) {
+  return std::make_unique<btVector3>(trans.getOrigin());
+}
+std::unique_ptr<btQuaternion>
+btTransform_getRotation(const btTransform &trans) {
+  return std::make_unique<btQuaternion>(trans.getRotation());
+}
+std::unique_ptr<btMatrix3x3> btTransform_getBasis(const btTransform &trans) {
+  return std::make_unique<btMatrix3x3>(trans.getBasis());
+}
+void setFromOpenGLMatrix(btTransform &trans, const float *m) {
+  trans.setFromOpenGLMatrix(m);
+}
+std::unique_ptr<btTransform> btTransform_inverse(const btTransform &trans) {
+  return std::make_unique<btTransform>(trans.inverse());
+}
+std::unique_ptr<btTransform> btTransform_mul(const btTransform &trans,
+                                             const btTransform &t) {
+  return std::make_unique<btTransform>(trans * t);
+}
 } // namespace ammo
