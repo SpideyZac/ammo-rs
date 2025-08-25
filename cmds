@@ -1,3 +1,7 @@
 cargo test -- --nocapture
 cargo +nightly fmt
 clang-format -i src/ammo.cc include/ammo.h
+
+
+
+ \{[\s\S\n]*?\}

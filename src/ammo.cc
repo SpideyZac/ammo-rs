@@ -112,4 +112,50 @@ std::unique_ptr<btVector3> btVector3_sub(const btVector3 &vec,
                                          const btVector3 &v) {
   return std::make_unique<btVector3>(vec - v);
 }
+
+std::unique_ptr<btVector4> btVector4_new() {
+  return std::make_unique<btVector4>();
+}
+std::unique_ptr<btVector4> btVector4_new1(float x, float y, float z, float w) {
+  return std::make_unique<btVector4>(x, y, z, w);
+}
+float btVector4_length(const btVector4 &vec) { return vec.length(); }
+float btVector4_x(const btVector4 &vec) { return vec.x(); }
+float btVector4_y(const btVector4 &vec) { return vec.y(); }
+float btVector4_z(const btVector4 &vec) { return vec.z(); }
+float btVector4_w(const btVector4 &vec) { return vec.w(); }
+void btVector4_setX(btVector4 &vec, float x) { vec.setX(x); }
+void btVector4_setY(btVector4 &vec, float y) { vec.setY(y); }
+void btVector4_setZ(btVector4 &vec, float z) { vec.setZ(z); }
+void btVector4_setValue(btVector4 &vec, float x, float y, float z, float w) {
+  vec.setValue(x, y, z, w);
+}
+void btVector4_normalize(btVector4 &vec) { vec.normalize(); }
+std::unique_ptr<btVector3>
+btVector4_rotate(const btVector4 &vec, const btVector3 &wAxis, float angle) {
+  return std::make_unique<btVector3>(vec.rotate(wAxis, angle));
+}
+float btVector4_dot(const btVector4 &vec, const btVector4 &v) {
+  return vec.dot(v);
+}
+std::unique_ptr<btVector3> btVector4_mul(const btVector4 &vec, float s) {
+  return std::make_unique<btVector3>(vec * s);
+}
+std::unique_ptr<btVector3> btVector4_add(const btVector4 &vec,
+                                         const btVector3 &v) {
+  return std::make_unique<btVector3>(vec + v);
+}
+std::unique_ptr<btVector3> btVector4_sub(const btVector4 &vec,
+                                         const btVector3 &v) {
+  return std::make_unique<btVector3>(vec - v);
+}
+
+float btQuadWord_x(const btQuadWord &vec) { return vec.x(); }
+float btQuadWord_y(const btQuadWord &vec) { return vec.y(); }
+float btQuadWord_z(const btQuadWord &vec) { return vec.z(); }
+float btQuadWord_w(const btQuadWord &vec) { return vec.w(); }
+void btQuadWord_setX(btQuadWord &vec, float x) { vec.setX(x); }
+void btQuadWord_setY(btQuadWord &vec, float y) { vec.setY(y); }
+void btQuadWord_setZ(btQuadWord &vec, float z) { vec.setZ(z); }
+void btQuadWord_setW(btQuadWord &vec, float w) { vec.setW(w); }
 } // namespace ammo

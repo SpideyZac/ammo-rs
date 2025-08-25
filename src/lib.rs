@@ -8,6 +8,8 @@ mod ffi {
 
         type DebugDrawer;
         type btVector3;
+        type btVector4;
+        type btQuadWord;
 
         unsafe fn DebugDrawer_new(
             drawLine: unsafe fn(&btVector3, &btVector3, &btVector3),
@@ -54,10 +56,46 @@ mod ffi {
         unsafe fn btVector3_setZ(v: Pin<&mut btVector3>, z: f32);
         unsafe fn btVector3_setValue(v: Pin<&mut btVector3>, x: f32, y: f32, z: f32);
         unsafe fn btVector3_normalize(v: Pin<&mut btVector3>);
+        unsafe fn btVector3_rotate(
+            v: &btVector3,
+            wAxis: &btVector3,
+            angle: f32,
+        ) -> UniquePtr<btVector3>;
         unsafe fn btVector3_dot(v: &btVector3, other: &btVector3) -> f32;
         unsafe fn btVector3_mul(v: &btVector3, s: f32) -> UniquePtr<btVector3>;
         unsafe fn btVector3_add(v: &btVector3, other: &btVector3) -> UniquePtr<btVector3>;
         unsafe fn btVector3_sub(v: &btVector3, other: &btVector3) -> UniquePtr<btVector3>;
+
+        unsafe fn btVector4_new() -> UniquePtr<btVector4>;
+        unsafe fn btVector4_new1(x: f32, y: f32, z: f32, w: f32) -> UniquePtr<btVector4>;
+        unsafe fn btVector4_length(v: &btVector4) -> f32;
+        unsafe fn btVector4_x(v: &btVector4) -> f32;
+        unsafe fn btVector4_y(v: &btVector4) -> f32;
+        unsafe fn btVector4_z(v: &btVector4) -> f32;
+        unsafe fn btVector4_w(v: &btVector4) -> f32;
+        unsafe fn btVector4_setX(v: Pin<&mut btVector4>, x: f32);
+        unsafe fn btVector4_setY(v: Pin<&mut btVector4>, y: f32);
+        unsafe fn btVector4_setZ(v: Pin<&mut btVector4>, z: f32);
+        unsafe fn btVector4_setValue(v: Pin<&mut btVector4>, x: f32, y: f32, z: f32, w: f32);
+        unsafe fn btVector4_normalize(v: Pin<&mut btVector4>);
+        unsafe fn btVector4_rotate(
+            v: &btVector4,
+            wAxis: &btVector3,
+            angle: f32,
+        ) -> UniquePtr<btVector3>;
+        unsafe fn btVector4_dot(v: &btVector4, other: &btVector4) -> f32;
+        unsafe fn btVector4_mul(v: &btVector4, s: f32) -> UniquePtr<btVector3>;
+        unsafe fn btVector4_add(v: &btVector4, other: &btVector3) -> UniquePtr<btVector3>;
+        unsafe fn btVector4_sub(v: &btVector4, other: &btVector3) -> UniquePtr<btVector3>;
+
+        unsafe fn btQuadWord_x(v: &btQuadWord) -> f32;
+        unsafe fn btQuadWord_y(v: &btQuadWord) -> f32;
+        unsafe fn btQuadWord_z(v: &btQuadWord) -> f32;
+        unsafe fn btQuadWord_w(v: &btQuadWord) -> f32;
+        unsafe fn btQuadWord_setX(v: Pin<&mut btQuadWord>, x: f32);
+        unsafe fn btQuadWord_setY(v: Pin<&mut btQuadWord>, y: f32);
+        unsafe fn btQuadWord_setZ(v: Pin<&mut btQuadWord>, z: f32);
+        unsafe fn btQuadWord_setW(v: Pin<&mut btQuadWord>, w: f32);
     }
 }
 

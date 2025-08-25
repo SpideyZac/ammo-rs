@@ -18,7 +18,9 @@
 #include "rust/cxx.h"
 
 namespace ammo {
+using ::btQuadWord;
 using ::btVector3;
+using ::btVector4;
 
 class DebugDrawer : public btIDebugDraw {
 private:
@@ -98,4 +100,34 @@ std::unique_ptr<btVector3> btVector3_add(const btVector3 &vec,
                                          const btVector3 &v);
 std::unique_ptr<btVector3> btVector3_sub(const btVector3 &vec,
                                          const btVector3 &v);
+
+std::unique_ptr<btVector4> btVector4_new();
+std::unique_ptr<btVector4> btVector4_new1(float x, float y, float z, float w);
+float btVector4_length(const btVector4 &vec);
+float btVector4_x(const btVector4 &vec);
+float btVector4_y(const btVector4 &vec);
+float btVector4_z(const btVector4 &vec);
+float btVector4_w(const btVector4 &vec);
+void btVector4_setX(btVector4 &vec, float x);
+void btVector4_setY(btVector4 &vec, float y);
+void btVector4_setZ(btVector4 &vec, float z);
+void btVector4_setValue(btVector4 &vec, float x, float y, float z, float w);
+void btVector4_normalize(btVector4 &vec);
+std::unique_ptr<btVector3>
+btVector4_rotate(const btVector4 &vec, const btVector3 &wAxis, float angle);
+float btVector4_dot(const btVector4 &vec, const btVector4 &v);
+std::unique_ptr<btVector3> btVector4_mul(const btVector4 &vec, float s);
+std::unique_ptr<btVector3> btVector4_add(const btVector4 &vec,
+                                         const btVector3 &v);
+std::unique_ptr<btVector3> btVector4_sub(const btVector4 &vec,
+                                         const btVector3 &v);
+
+float btQuadWord_x(const btQuadWord &vec);
+float btQuadWord_y(const btQuadWord &vec);
+float btQuadWord_z(const btQuadWord &vec);
+float btQuadWord_w(const btQuadWord &vec);
+void btQuadWord_setX(btQuadWord &vec, float x);
+void btQuadWord_setY(btQuadWord &vec, float y);
+void btQuadWord_setZ(btQuadWord &vec, float z);
+void btQuadWord_setW(btQuadWord &vec, float w);
 } // namespace ammo
